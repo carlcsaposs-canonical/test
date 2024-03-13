@@ -3,14 +3,10 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        foo: [1,2,3,4,5,6,7,8,9.10]
+        bar: [1,2,3,4,5,6,7,8,9.10]
     runs-on: ubuntu-latest
     steps:
-      - name: Download Allure
-        # Following instructions from https://allurereport.org/docs/gettingstarted-installation/#install-via-the-system-package-manager-for-linux
-        run: gh release download --repo allure-framework/allure2 --pattern 'allure_*.deb'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Install Allure
-        run: |
-          sudo apt-get update
-          sudo apt-get install ./allure_*.deb -y
+      - run: echo foo
